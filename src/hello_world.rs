@@ -1,5 +1,25 @@
 use std::fmt;
 
+// To print out more than just primitives, you need a little more...
+#[derive(Debug)]
+struct Structure(i32);
+impl fmt::Display for Structure {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.0)
+    }
+}
+
+#[derive(Debug)]
+struct Point2D {
+    x: f64,
+    y: f64,
+}
+impl fmt::Display for Point2D {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "({}, {})", self.x, self.y)
+    }
+}
+
 pub fn run() {
     /* I'm still not entirely sure what the exclamation syntax is here for Rust "macros",
      * but it's clear it's probably more complicated than normal C macros or something... */
@@ -32,14 +52,17 @@ pub fn run() {
     let pi = 3.1415926535;
     println!("Pi is roughly {:.4}", pi);
 
-    // To print out more than just primitives, you need a little more...
-    #[derive(Debug)]
-    struct Structure(i32);
+    let st = Structure(3);
     // Custom structures need to implement the Display trait, but Rust also provides a default
     // #[derive(Debug)] attribute which is generally sufficient and recommended for custom structs
     println!(
         "This struct, {:?}, wouldn't print without the '#[derive(Debug)]'\n",
-        Structure(3)
+        st
+    );
+
+    println!(
+        "If you impl fmt::Display, you can print with '{{}}': {}\n",
+        st
     );
 
     #[derive(Debug)]
@@ -51,12 +74,7 @@ pub fn run() {
     let age = 0;
     let ruby = Person { name, age };
     println!("You can pretty print structs with '{{:#?}}'\n{:#?}", ruby);
-}
 
-struct Structure(i32);
-
-impl fmt::Display for Structure {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.0)
-    }
+    let point = Point2D { x: 3.14, y: 5.001 };
+    println!("Printing a point which impls fmt::Display! {}", point);
 }
