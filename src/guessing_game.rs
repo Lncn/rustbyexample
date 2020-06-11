@@ -13,7 +13,8 @@ pub fn run() {
         std::io::stdout().flush().unwrap();
         let mut guess = String::new();
 
-        io::stdin().read_line(&mut guess)
+        io::stdin()
+            .read_line(&mut guess)
             .expect("Failed to read line");
 
         let guess: u8 = match guess.trim().parse() {
@@ -21,7 +22,7 @@ pub fn run() {
             Err(_) => {
                 println!("Invalid input!");
                 continue;
-            },
+            }
         };
 
         match guess.cmp(&secret) {
@@ -30,7 +31,7 @@ pub fn run() {
             Ordering::Equal => {
                 println!("You guess correctly!");
                 break;
-            },
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
-mod hello_world;
 mod guessing_game;
+mod hello_world;
 
 fn main() {
     /* Chapter 01: Hello World */
