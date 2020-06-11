@@ -3,6 +3,7 @@ use std::cmp::Ordering;
 use std::io;
 use std::io::Write;
 
+#[allow(dead_code)]
 pub fn run() {
     let secret: u8 = random();
 

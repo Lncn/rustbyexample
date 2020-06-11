@@ -1,5 +1,6 @@
 mod guessing_game;
 mod hello_world;
+mod primitives;
 
 fn main() {
     /* Chapter 01: Hello World */
@@ -11,4 +12,8 @@ fn main() {
     println!("  *** Extra: Guessing Game! ***");
     println!("  *****************************");
     guessing_game::run();
+    println!("************************************");
+    println!("***** Chapter 02: Primitives! ******");
+    println!("************************************");
+    primitives::run();
 }
